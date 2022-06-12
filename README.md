@@ -4,7 +4,6 @@ This implements a Nebulex adapter using [Horde](https://github.com/derekkraan/ho
 
 This is a alternative to `Nebulex Partitioned Cache` that uses `:pg` under the hood.
 
-
 ## TODO 
 
 - [x] Cache Entry
@@ -75,3 +74,7 @@ defmodule MyApp.Cache do
     ]
 end
 ```
+
+## Notes
+
+This is heavily influenced by [nebulex_adapters_cache by cabol](https://github.com/cabol/nebulex_adapters_cachex), I've used a lot of the testing method implemented there

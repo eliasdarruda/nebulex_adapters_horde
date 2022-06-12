@@ -24,7 +24,6 @@ defmodule Nebulex.Adapters.Horde do
   @behaviour Nebulex.Adapter
   @behaviour Nebulex.Adapter.Entry
   @behaviour Nebulex.Adapter.Queryable
-  @behaviour Nebulex.Adapter.Stats
 
   # Inherit default transaction implementation
   use Nebulex.Adapter.Transaction

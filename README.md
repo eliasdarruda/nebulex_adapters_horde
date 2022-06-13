@@ -75,6 +75,12 @@ defmodule MyApp.Cache do
 end
 ```
 
+## Running Benchmarks
+
+Everything related to benchmark is in `benchmarks/benchmarks.exs`, to run it you can use: `MIX_ENV=test mix run benchmarks/benchmarks.exs`
+
+The details of benchmark of `Horde` against `Partitioned` adapter is in `benchmarks/details.txt`
+
 ## Notes
 
 This is heavily influenced by [nebulex_adapters_cache by cabol](https://github.com/cabol/nebulex_adapters_cachex), I've used a lot of the testing method implemented there

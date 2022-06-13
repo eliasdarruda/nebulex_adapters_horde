@@ -13,19 +13,29 @@ defmodule NebulexAdaptersHorde.MixProject do
     ]
   end
 
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "test/support", "benchmarks"]
   defp elixirc_paths(_), do: ["lib"]
 
-  # Run "mix help compile.app" to learn about applications.
-  def application do
-    []
+  if Mix.env() == :test do
+    def application do
+      [
+        mod: {BenchTestApplication, []}
+      ]
+    end
+  else
+    def application do
+      []
+    end
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       nebulex_dep(),
-      {:horde, "~> 0.8.7"}
+      {:horde, "~> 0.8.7"},
+      {:benchee, "~> 1.0", only: :test},
+      {:benchee_html, "~> 1.0", only: :test},
+      {:flow, "~> 1.1", only: :test}
     ]
   end
 

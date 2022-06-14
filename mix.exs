@@ -59,14 +59,6 @@ defmodule NebulexAdaptersHorde.MixProject do
       "nbx.setup": [
         "cmd rm -rf nebulex",
         "cmd git clone --depth 1 --branch v2.3.2 https://github.com/cabol/nebulex"
-      ],
-      check: [
-        "compile --warnings-as-errors",
-        "format --check-formatted",
-        "credo --strict",
-        "coveralls.html",
-        "sobelow --exit --skip",
-        "dialyzer --format short"
       ]
     ]
   end
@@ -76,7 +68,8 @@ defmodule NebulexAdaptersHorde.MixProject do
       name: :nebulex_adapters_horde,
       maintainers: ["Elias Arruda"],
       licenses: [],
-      links: %{"GitHub" => @source_url}
+      links: %{"GitHub" => @source_url},
+      source_url: @source_url
     ]
   end
 

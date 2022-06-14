@@ -309,6 +309,7 @@ defmodule Nebulex.Adapters.Horde do
 
   ## Helpers
 
+  @doc false
   def with_dynamic_cache(%{cache: cache, primary_name: nil}, action, args) do
     apply(cache.__primary__, action, args)
   end

@@ -7,7 +7,6 @@ Logger.remove_backend(:console)
 nodes = [:"node1@127.0.0.1", :"node2@127.0.0.1", :"node3@127.0.0.1"]
 :ok = Application.put_env(:nebulex_adapters_cachex, :nodes, nodes)
 
-
 # Nebulex dependency path
 nbx_dep_path = Mix.Project.deps_paths()[:nebulex]
 

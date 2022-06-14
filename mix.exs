@@ -1,15 +1,27 @@
 defmodule NebulexAdaptersHorde.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/eliasdarruda/nebulex_adapters_horde"
+  @version "1.0.0"
+
   def project do
     [
       app: :nebulex_adapters_horde,
-      version: "0.0.1",
+      version: @version,
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      package: package(),
+      description: "A Nebulex adapter for Horde",
+
+      # Docs
+      docs: [
+        main: "Nebulex.Adapters.Horde",
+        source_ref: "v#{@version}",
+        source_url: @source_url
+      ]
     ]
   end
 
@@ -35,7 +47,10 @@ defmodule NebulexAdaptersHorde.MixProject do
       {:horde, "~> 0.8.7"},
       {:benchee, "~> 1.0", only: :test},
       {:benchee_html, "~> 1.0", only: :test},
-      {:flow, "~> 1.1", only: :test}
+      {:flow, "~> 1.1", only: :test},
+
+      # Docs
+      {:ex_doc, "~> 0.23", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -53,6 +68,15 @@ defmodule NebulexAdaptersHorde.MixProject do
         "sobelow --exit --skip",
         "dialyzer --format short"
       ]
+    ]
+  end
+
+  defp package do
+    [
+      name: :nebulex_adapters_horde,
+      maintainers: ["Elias Arruda"],
+      licenses: [],
+      links: %{"GitHub" => @source_url}
     ]
   end
 

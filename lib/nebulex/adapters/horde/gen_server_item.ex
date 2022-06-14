@@ -84,6 +84,14 @@ defmodule Nebulex.Adapters.Horde.GenServerItem do
     {:reply, new_value, parse_state({%{entry | value: new_value, ttl: ttl}, timer_ref})}
   end
 
+  def child_spec(registry_name, key, value, ttl) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :start_link, [registry_name, key, value, ttl]},
+      restart: :transient
+    }
+  end
+
   def start_link(registry_name, key, value \\ nil, ttl \\ nil) do
     GenServer.start_link(__MODULE__, {key, value, ttl}, name: via(key, registry_name))
   end
@@ -91,6 +99,7 @@ defmodule Nebulex.Adapters.Horde.GenServerItem do
   def via(key, registry_name), do: {:via, Horde.Registry, {registry_name, {:cache_keys, key}}}
 
   defp change_timer(pid, timer_ref, :infinity), do: change_timer(pid, timer_ref, nil)
+
   defp change_timer(pid, timer_ref, ttl) do
     if not is_nil(timer_ref) do
       Process.cancel_timer(timer_ref)

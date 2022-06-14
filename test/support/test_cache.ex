@@ -53,7 +53,8 @@ defmodule NebulexAdaptersHorde.TestCache do
       @moduledoc false
       use Nebulex.Cache,
         otp_app: :nebulex_adapters_horde,
-        adapter: Nebulex.Adapters.Horde
+        adapter: Nebulex.Adapters.Horde,
+        primary_storage_adapter: Nebulex.Adapters.Local
     end
 
     defmodule L2 do
@@ -61,7 +62,7 @@ defmodule NebulexAdaptersHorde.TestCache do
       use Nebulex.Cache,
         otp_app: :nebulex_adapters_horde,
         adapter: Nebulex.Adapters.Replicated,
-        primary_storage_adapter: Nebulex.Adapters.Horde
+        primary_storage_adapter: Nebulex.Adapters.Local
     end
 
     defmodule L3 do
@@ -69,7 +70,7 @@ defmodule NebulexAdaptersHorde.TestCache do
       use Nebulex.Cache,
         otp_app: :nebulex_adapters_horde,
         adapter: Nebulex.Adapters.Partitioned,
-        primary_storage_adapter: Nebulex.Adapters.Horde
+        primary_storage_adapter: Nebulex.Adapters.Local
     end
   end
 end

@@ -44,14 +44,16 @@ defmodule Nebulex.Adapters.Horde.Cache do
         :exit, {:noproc, _details} -> false
       end
     end)
-    |> Enum.any?
+    |> Enum.any?()
   end
 
   def put_new_all!(adapter_meta, entries, ttl) do
     keys = all(adapter_meta)
-    has_key_already? = Enum.any?(entries, fn {key, _value} ->
-      key in keys
-    end)
+
+    has_key_already? =
+      Enum.any?(entries, fn {key, _value} ->
+        key in keys
+      end)
 
     if has_key_already? do
       false
@@ -66,7 +68,8 @@ defmodule Nebulex.Adapters.Horde.Cache do
     %{name: name, registry_name: registry_name} = adapter_meta
 
     case DynamicSupervisor.add_gen_server_child(name, registry_name, key, value, ttl) do
-      {:error, {:already_started, _pid}} -> false
+      {:error, {:already_started, _pid}} ->
+        false
 
       {:ok, _pid} ->
         true
@@ -179,7 +182,8 @@ defmodule Nebulex.Adapters.Horde.Cache do
         Item.via(key, adapter_meta.registry_name)
         |> GenServer.call({:update_counter, amount, ttl})
 
-      {:ok, _pid} -> initial_amount
+      {:ok, _pid} ->
+        initial_amount
     end
   end
 end

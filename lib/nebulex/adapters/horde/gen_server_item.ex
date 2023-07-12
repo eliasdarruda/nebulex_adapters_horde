@@ -31,7 +31,7 @@ defmodule Nebulex.Adapters.Horde.GenServerItem do
     {:stop, :normal, state}
   end
 
-  def handle_info({:EXIT, _pid, reason}, state) do
+  def handle_info({:EXIT, _pid, _reason}, state) do
     {:stop, :normal, state}
   end
 

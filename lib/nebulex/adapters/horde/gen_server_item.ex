@@ -4,6 +4,7 @@ defmodule Nebulex.Adapters.Horde.GenServerItem do
   """
 
   use GenServer
+  require Logger
 
   @impl true
   def init({key, value, ttl}) do
@@ -22,6 +23,15 @@ defmodule Nebulex.Adapters.Horde.GenServerItem do
 
   @impl true
   def handle_info(:stop, state) do
+    {:stop, :normal, state}
+  end
+
+  def handle_info({:EXIT, pid, {:name_conflict, _}}, state) do
+    Logger.warning("Name conflict. Stopping this process #{inspect(pid)}...")
+    {:stop, :normal, state}
+  end
+
+  def handle_info({:EXIT, _pid, _reason}, state) do
     {:stop, :normal, state}
   end
 

@@ -4,7 +4,7 @@ This implements a Nebulex adapter using [Horde](https://github.com/derekkraan/ho
 
 This is a alternative to `Nebulex Partitioned Cache` that uses `:pg` under the hood.
 
-**NOTE**: This adapter only supports Nebulex v2.0.0 onwards.
+> **NOTE**: This adapter only supports Nebulex v2.0.0 onwards.
 
 ## Overall features
 

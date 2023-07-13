@@ -25,7 +25,7 @@ Add `nebulex_adapters_horde` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:nebulex_adapters_horde, "~> 1.0.0"}
+    {:nebulex_adapters_horde, "~> 1.0.1"}
   ]
 end
 ```

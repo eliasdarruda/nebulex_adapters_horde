@@ -10,6 +10,8 @@ This is a alternative to `Nebulex Partitioned Cache` that uses `:pg` under the h
 
   * In-memory data storage in GenServer, distributed relying on Horde with CRDT.
   * Every cache entry is a process supervised by Horde.
+    * This trades off with memory, every cache entry will also have the memory from the process itself with it.
+    * Its good when you know that you are not going to have a huge amount of entries.
   * Expired entries are lost forever (process termination).
   * Processes hand-off with graceful shutdown thanks to Horde.
   * Configurable primary storage adapter.

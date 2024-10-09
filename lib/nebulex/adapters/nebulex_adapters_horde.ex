@@ -132,7 +132,7 @@ defmodule Nebulex.Adapters.Horde do
         name: normalize_module_name([name, Supervisor]),
         strategy: :rest_for_one,
         children: [
-          {cache.__primary__, primary_opts},
+          {cache.__primary__(), primary_opts},
           Nebulex.Adapters.Horde.Registry.child_spec(registry_name, horde_registry_opts),
           {Nebulex.Adapters.Horde.DynamicSupervisor, horde_dynamic_supervisor_opts}
         ]
@@ -311,12 +311,12 @@ defmodule Nebulex.Adapters.Horde do
 
   @doc false
   def with_dynamic_cache(%{cache: cache, primary_name: nil}, action, args) do
-    apply(cache.__primary__, action, args)
+    apply(cache.__primary__(), action, args)
   end
 
   def with_dynamic_cache(%{cache: cache, primary_name: primary_name}, action, args) do
-    cache.__primary__.with_dynamic_cache(primary_name, fn ->
-      apply(cache.__primary__, action, args)
+    cache.__primary__().with_dynamic_cache(primary_name, fn ->
+      apply(cache.__primary__(), action, args)
     end)
   end
 
